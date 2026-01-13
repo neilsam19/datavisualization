@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
-import embed from 'vega-embed';
-import { useApp } from '../../context/AppContext';
-import { buildVegaSpec } from '../../utils/vegaSpecBuilder';
+import { useEffect, useRef } from "react";
+import embed from "vega-embed";
+import { useApp } from "../../context/AppContext";
+import { buildVegaSpec } from "../../utils/vegaSpecBuilder";
 
 export function ChartView() {
   const { state } = useApp();
@@ -13,56 +13,70 @@ export function ChartView() {
     if (!containerRef.current) return;
 
     if (!spec) {
-      containerRef.current.innerHTML = '';
+      containerRef.current.innerHTML = "";
       return;
     }
 
     const embedChart = async () => {
       try {
         await embed(containerRef.current!, spec, {
-          actions: { export: true, source: false, compiled: false, editor: false },
-          renderer: 'svg',
+          actions: {
+            export: true,
+            source: false,
+            compiled: false,
+            editor: false,
+          },
+          renderer: "svg",
           config: {
-            background: 'transparent',
+            background: "transparent",
             axis: {
-              labelColor: '#a3a3a3',
-              titleColor: '#fafafa',
-              gridColor: 'rgba(255, 255, 255, 0.06)',
-              domainColor: 'rgba(255, 255, 255, 0.15)',
-              tickColor: 'rgba(255, 255, 255, 0.15)',
-              labelFont: 'DM Sans, sans-serif',
-              titleFont: 'Instrument Serif, serif',
+              labelColor: "#a3a3a3",
+              titleColor: "#fafafa",
+              gridColor: "rgba(255, 255, 255, 0.06)",
+              domainColor: "rgba(255, 255, 255, 0.15)",
+              tickColor: "rgba(255, 255, 255, 0.15)",
+              labelFont: "DM Sans, sans-serif",
+              titleFont: "Instrument Serif, serif",
               labelFontSize: 11,
               titleFontSize: 13,
               titleFontWeight: 400,
-              titleFontStyle: 'italic',
+              titleFontStyle: "italic",
             },
             legend: {
-              labelColor: '#a3a3a3',
-              titleColor: '#fafafa',
-              labelFont: 'DM Sans, sans-serif',
-              titleFont: 'DM Sans, sans-serif',
+              labelColor: "#a3a3a3",
+              titleColor: "#fafafa",
+              labelFont: "DM Sans, sans-serif",
+              titleFont: "DM Sans, sans-serif",
               labelFontSize: 11,
               titleFontSize: 11,
               titleFontWeight: 600,
             },
             title: {
-              color: '#fafafa',
-              font: 'Instrument Serif, serif',
+              color: "#fafafa",
+              font: "Instrument Serif, serif",
               fontSize: 18,
               fontWeight: 400,
-              fontStyle: 'italic',
+              fontStyle: "italic",
             },
             view: {
-              stroke: 'transparent',
+              stroke: "transparent",
             },
             range: {
-              category: ['#3b82f6', '#f97316', '#a855f7', '#22c55e', '#ef4444', '#eab308', '#06b6d4', '#ec4899'],
+              category: [
+                "#3b82f6",
+                "#f97316",
+                "#a855f7",
+                "#22c55e",
+                "#ef4444",
+                "#eab308",
+                "#06b6d4",
+                "#ec4899",
+              ],
             },
           },
         });
       } catch (error) {
-        console.error('Vega embed error:', error);
+        console.error("Vega embed error:", error);
       }
     };
 
@@ -74,77 +88,77 @@ export function ChartView() {
   return (
     <main
       style={{
-        padding: '32px',
-        backgroundColor: 'var(--color-bg-primary)',
-        height: '100%',
-        overflow: 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'relative',
+        padding: "32px",
+        backgroundColor: "var(--color-bg-primary)",
+        height: "100%",
+        overflow: "auto",
+        display: "flex",
+        flexDirection: "column",
+        position: "relative",
       }}
     >
       {/* Background pattern */}
       <div
         style={{
-          position: 'absolute',
+          position: "absolute",
           inset: 0,
           backgroundImage: `
             radial-gradient(circle at 25% 25%, rgba(255, 107, 74, 0.03) 0%, transparent 50%),
             radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.03) 0%, transparent 50%)
           `,
-          pointerEvents: 'none',
+          pointerEvents: "none",
         }}
       />
 
       {/* Header */}
       <div
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '24px',
-          position: 'relative',
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: "24px",
+          position: "relative",
           zIndex: 1,
         }}
       >
         <div>
           <h2
             style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '18px',
+              fontFamily: "var(--font-display)",
+              fontSize: "18px",
               fontWeight: 400,
-              color: 'var(--color-text-primary)',
-              marginBottom: '4px',
-              fontStyle: 'italic',
+              color: "var(--color-text-primary)",
+              marginBottom: "4px",
+              fontStyle: "italic",
             }}
           >
             Visualization
           </h2>
           <p
             style={{
-              fontSize: '12px',
-              color: 'var(--color-text-muted)',
+              fontSize: "12px",
+              color: "var(--color-text-muted)",
             }}
           >
             {hasEncodings
               ? spec
-                ? 'Your chart is ready'
-                : 'Add X or Y axis to render'
-              : 'Start by dragging fields to encodings'}
+                ? "Your chart is ready"
+                : "Add X or Y axis to render"
+              : "Start by dragging fields to encodings"}
           </p>
         </div>
 
         {spec && (
           <div
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 12px',
-              backgroundColor: 'var(--color-bg-tertiary)',
-              borderRadius: '6px',
-              fontSize: '11px',
-              color: 'var(--color-text-secondary)',
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              padding: "6px 12px",
+              backgroundColor: "var(--color-bg-tertiary)",
+              borderRadius: "6px",
+              fontSize: "11px",
+              color: "var(--color-text-secondary)",
             }}
           >
             <svg
@@ -165,212 +179,222 @@ export function ChartView() {
       </div>
 
       {/* Chart area */}
-      {!hasEncodings ? (
-        <div
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'relative',
-            zIndex: 1,
-          }}
-        >
-          <div
-            style={{
-              textAlign: 'center',
-              maxWidth: '320px',
-              animation: 'fadeIn 0.5s ease-out',
-            }}
-          >
-            {/* Decorative chart icon */}
-            <div
-              style={{
-                width: '80px',
-                height: '80px',
-                margin: '0 auto 24px',
-                borderRadius: '20px',
-                background: 'linear-gradient(135deg, var(--color-bg-tertiary) 0%, var(--color-bg-elevated) 100%)',
-                border: '1px solid var(--color-border)',
-                display: 'flex',
-                alignItems: 'flex-end',
-                justifyContent: 'center',
-                gap: '6px',
-                padding: '16px',
-              }}
-            >
-              <div
-                style={{
-                  width: '12px',
-                  height: '20px',
-                  backgroundColor: 'var(--color-quantitative)',
-                  borderRadius: '3px 3px 0 0',
-                  opacity: 0.6,
-                }}
-              />
-              <div
-                style={{
-                  width: '12px',
-                  height: '32px',
-                  backgroundColor: 'var(--color-nominal)',
-                  borderRadius: '3px 3px 0 0',
-                  opacity: 0.8,
-                }}
-              />
-              <div
-                style={{
-                  width: '12px',
-                  height: '24px',
-                  backgroundColor: 'var(--color-ordinal)',
-                  borderRadius: '3px 3px 0 0',
-                  opacity: 0.7,
-                }}
-              />
-            </div>
-
-            <h3
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '20px',
-                fontWeight: 400,
-                color: 'var(--color-text-primary)',
-                marginBottom: '8px',
-                fontStyle: 'italic',
-              }}
-            >
-              Create Your Chart
-            </h3>
-            <p
-              style={{
-                fontSize: '13px',
-                color: 'var(--color-text-muted)',
-                lineHeight: 1.6,
-              }}
-            >
-              Drag data fields from the left panel to encoding channels to build your visualization
-            </p>
-          </div>
-        </div>
-      ) : !spec ? (
-        <div
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'relative',
-            zIndex: 1,
-          }}
-        >
-          <div
-            style={{
-              textAlign: 'center',
-              maxWidth: '320px',
-              animation: 'fadeIn 0.5s ease-out',
-            }}
-          >
-            {/* Axes indicator */}
-            <div
-              style={{
-                width: '80px',
-                height: '80px',
-                margin: '0 auto 24px',
-                position: 'relative',
-              }}
-            >
-              {/* Y axis */}
-              <div
-                style={{
-                  position: 'absolute',
-                  left: '20px',
-                  top: '10px',
-                  bottom: '20px',
-                  width: '2px',
-                  backgroundColor: 'var(--color-accent)',
-                  borderRadius: '1px',
-                  opacity: 0.5,
-                }}
-              />
-              {/* X axis */}
-              <div
-                style={{
-                  position: 'absolute',
-                  left: '20px',
-                  bottom: '20px',
-                  right: '10px',
-                  height: '2px',
-                  backgroundColor: 'var(--color-accent)',
-                  borderRadius: '1px',
-                  opacity: 0.5,
-                }}
-              />
-              {/* Dashed placeholder */}
-              <div
-                style={{
-                  position: 'absolute',
-                  left: '30px',
-                  top: '20px',
-                  right: '15px',
-                  bottom: '30px',
-                  border: '2px dashed var(--color-border)',
-                  borderRadius: '8px',
-                }}
-              />
-            </div>
-
-            <h3
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '20px',
-                fontWeight: 400,
-                color: 'var(--color-text-primary)',
-                marginBottom: '8px',
-                fontStyle: 'italic',
-              }}
-            >
-              Almost There
-            </h3>
-            <p
-              style={{
-                fontSize: '13px',
-                color: 'var(--color-text-muted)',
-                lineHeight: 1.6,
-              }}
-            >
-              Add a field to the <span style={{ color: 'var(--color-accent)' }}>X</span> or{' '}
-              <span style={{ color: 'var(--color-accent)' }}>Y</span> axis to render your chart
-            </p>
-          </div>
-        </div>
-      ) : (
+      <div style={{ flex: 1, position: "relative", zIndex: 1 }}>
+        {/* Chart container - always mounted */}
         <div
           ref={containerRef}
           style={{
+            display: spec ? "flex" : "none",
             flex: 1,
-            backgroundColor: 'var(--color-bg-secondary)',
-            borderRadius: '16px',
-            padding: '24px',
-            border: '1px solid var(--color-border)',
-            position: 'relative',
-            zIndex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            animation: 'fadeIn 0.4s ease-out',
-            overflow: 'hidden',
+            backgroundColor: "var(--color-bg-secondary)",
+            borderRadius: "16px",
+            padding: "24px",
+            border: "1px solid var(--color-border)",
+            position: "absolute",
+            inset: 0,
+            alignItems: "center",
+            justifyContent: "center",
+            animation: "fadeIn 0.4s ease-out",
+            overflow: "hidden",
           }}
         />
-      )}
+
+        {/* Placeholder: No encodings */}
+        {!hasEncodings && (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                textAlign: "center",
+                maxWidth: "320px",
+                animation: "fadeIn 0.5s ease-out",
+              }}
+            >
+              {/* Decorative chart icon */}
+              <div
+                style={{
+                  width: "80px",
+                  height: "80px",
+                  margin: "0 auto 24px",
+                  borderRadius: "20px",
+                  background:
+                    "linear-gradient(135deg, var(--color-bg-tertiary) 0%, var(--color-bg-elevated) 100%)",
+                  border: "1px solid var(--color-border)",
+                  display: "flex",
+                  alignItems: "flex-end",
+                  justifyContent: "center",
+                  gap: "6px",
+                  padding: "16px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "12px",
+                    height: "20px",
+                    backgroundColor: "var(--color-quantitative)",
+                    borderRadius: "3px 3px 0 0",
+                    opacity: 0.6,
+                  }}
+                />
+                <div
+                  style={{
+                    width: "12px",
+                    height: "32px",
+                    backgroundColor: "var(--color-nominal)",
+                    borderRadius: "3px 3px 0 0",
+                    opacity: 0.8,
+                  }}
+                />
+                <div
+                  style={{
+                    width: "12px",
+                    height: "24px",
+                    backgroundColor: "var(--color-ordinal)",
+                    borderRadius: "3px 3px 0 0",
+                    opacity: 0.7,
+                  }}
+                />
+              </div>
+
+              <h3
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "20px",
+                  fontWeight: 400,
+                  color: "var(--color-text-primary)",
+                  marginBottom: "8px",
+                  fontStyle: "italic",
+                }}
+              >
+                Create Your Chart
+              </h3>
+              <p
+                style={{
+                  fontSize: "13px",
+                  color: "var(--color-text-muted)",
+                  lineHeight: 1.6,
+                }}
+              >
+                Drag data fields from the left panel to encoding channels to
+                build your visualization
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Placeholder: Has encodings but no spec */}
+        {hasEncodings && !spec && (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                textAlign: "center",
+                maxWidth: "320px",
+                animation: "fadeIn 0.5s ease-out",
+              }}
+            >
+              {/* Axes indicator */}
+              <div
+                style={{
+                  width: "80px",
+                  height: "80px",
+                  margin: "0 auto 24px",
+                  position: "relative",
+                }}
+              >
+                {/* Y axis */}
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "20px",
+                    top: "10px",
+                    bottom: "20px",
+                    width: "2px",
+                    backgroundColor: "var(--color-accent)",
+                    borderRadius: "1px",
+                    opacity: 0.5,
+                  }}
+                />
+                {/* X axis */}
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "20px",
+                    bottom: "20px",
+                    right: "10px",
+                    height: "2px",
+                    backgroundColor: "var(--color-accent)",
+                    borderRadius: "1px",
+                    opacity: 0.5,
+                  }}
+                />
+                {/* Dashed placeholder */}
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "30px",
+                    top: "20px",
+                    right: "15px",
+                    bottom: "30px",
+                    border: "2px dashed var(--color-border)",
+                    borderRadius: "8px",
+                  }}
+                />
+              </div>
+
+              <h3
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "20px",
+                  fontWeight: 400,
+                  color: "var(--color-text-primary)",
+                  marginBottom: "8px",
+                  fontStyle: "italic",
+                }}
+              >
+                Almost There
+              </h3>
+              <p
+                style={{
+                  fontSize: "13px",
+                  color: "var(--color-text-muted)",
+                  lineHeight: 1.6,
+                }}
+              >
+                Add a field to the{" "}
+                <span style={{ color: "var(--color-accent)" }}>X</span> or{" "}
+                <span style={{ color: "var(--color-accent)" }}>Y</span> axis to
+                render your chart
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Footer gradient line */}
       <div
         style={{
-          position: 'absolute',
+          position: "absolute",
           bottom: 0,
-          left: '32px',
-          right: '32px',
-          height: '1px',
-          background: 'linear-gradient(90deg, transparent 0%, var(--color-border) 50%, transparent 100%)',
+          left: "32px",
+          right: "32px",
+          height: "1px",
+          background:
+            "linear-gradient(90deg, transparent 0%, var(--color-border) 50%, transparent 100%)",
         }}
       />
     </main>
